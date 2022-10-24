@@ -250,13 +250,24 @@ if plot8:
     ax.plot(trap_index, particles_df.z, label='f = 0.7', marker='o')
 
 
+plot9 = True
+if plot9:
+    fig = plt.figure(figsize=(5, 4))
+    ax = fig.add_subplot()
 
+    trapped_fine_df = pd.read_csv('trapped_particles_fine2', header=None)
+    trapped_fine_df = trapped_fine_df.transpose()
+    trapped_fine_df.columns = ['x', 'y']
+    n_steps = 99
+    trap_fine_index = np.linspace(0.8, 0.9, n_steps)
 
+    ax.plot(trap_fine_index, trapped_fine_df.x,label='f = No particle interactions', marker='o')
+    ax.plot(trap_fine_index, trapped_fine_df.y, label='f = With particle interactions', marker='o')
     # Set the axis labels
     ax.set_xlabel('w_v')
-    ax.set_ylabel('Trapped Particles')
+    ax.set_ylabel('Trapped particles')
     plt.legend()
-    plt.savefig('trapped_particles_wide2.pdf')
+    plt.savefig('trapped_particles_fine.pdf')
 
     # Rotate the axes and update
     # ax.view_init(90, 90, 90)
