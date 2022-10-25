@@ -148,8 +148,8 @@ int main()
 
         for( int i= 0; i < ns[k] ; i++)
         {
-        errors_eu(i) = arma::accu((rs_ana2.col(i) - rs_eu2.col(i)));
-        errors_rk(i) = arma::accu((rs_ana2.col(i) - rs_rk2.col(i)));
+        errors_eu(i) = arma::accu((rs_ana2.col(i) - rs_eu2.col(i))/rs_ana2.col(i));
+        errors_rk(i) = arma::accu((rs_ana2.col(i) - rs_rk2.col(i))/rs_ana2.col(i));
         }
             
         std::string filename_eu = "eu_errors_n_" + std::to_string(ns[k]);

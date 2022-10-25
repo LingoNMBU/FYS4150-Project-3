@@ -188,9 +188,8 @@ if plot3D:
     ax2.scatter(pos_rk_d2_int.x, pos_rk_d2_int.y, pos_rk_d2_int.z, marker='o', label='Particle 2', s = 0.1)
 
     # Set the axis labels
-    ax1.set_xlabel('x')
-    ax1.set_ylabel('y')
-    ax1.set_zlabel('z')
+    plt.setp([ax1, ax2], xlabel=f'x [μm]', ylabel = f'y', zlabel= 'z')
+
     # plt.xlabel(f'x[μm]', rotation=0)
 
     plt.savefig('two_particles_xyz.pdf', bbox_inches="tight")
