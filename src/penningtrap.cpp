@@ -50,7 +50,7 @@ arma::vec PenningTrap::external_E_field(arma::vec r, double t)
 
 
   double k = (V1 / (2. * d * d));
-  arma::vec E = arma::vec(3); // gradient of V
+  arma::vec E = arma::vec(3); // -gradient of V
 
   E(2) = -k * 4. * r(2);
   E(0) = +k * 2. * r(0);
@@ -393,7 +393,9 @@ arma::vec PenningTrap::single_particle_analytical(double t, double x_0, double z
 
   double w_z = std::sqrt((2 * q * V0) / (m * d * d));
   double w_0 = (q * B0) / m;
-
+  //std::cout << w_z << std::endl;
+  //std::cout << w_z << std::endl;
+  //std::cout << w_z << std::endl;
   double w_p = (w_0 + sqrt((w_0 * w_0) - (2 * w_z * w_z))) / (2);
   double w_m = (w_0 - sqrt((w_0 * w_0) - (2 * w_z * w_z))) / (2);
 

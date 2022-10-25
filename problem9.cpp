@@ -105,8 +105,8 @@ int main()
     {
         double f = 0.7;
         double period = 500.; // micro second
-        double w_v_min = 0.8; // MHz or 1/microsecond
-        double w_v_max = 0.9; // MHz
+        double w_v_min = 0.82; // MHz or 1/microsecond
+        double w_v_max = 0.95; // MHz
         int n_w_v = 100;
         double w_v_step  = (w_v_max - w_v_min)/(n_w_v-1); // MHz
         int n_w_steps = int(round((w_v_max-w_v_min)/w_v_step));
@@ -134,7 +134,7 @@ int main()
                 //Initialization of Penning trap
                 PenningTrap harmonic_trap = PenningTrap(B0, V0, d0, true, w_v, f);
                 //PenningTrap harmonic_trap = PenningTrap(B0, V0, d0);
-                harmonic_trap.random_particles(50, q0, m0);
+                harmonic_trap.random_particles(100, q0, m0);
                 
 
                 for (int k=0; k < n_t_steps; k++)

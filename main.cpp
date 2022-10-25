@@ -44,6 +44,7 @@ int main()
         r_rk_s.col(i) = penningtrap1.particles[0].r;
         penningtrap1.evolve_RK4_2(dt, false);        
     } 
+    
     r_rk_s.save("positions_single_rk4", arma::csv_ascii);
 
 
@@ -122,16 +123,7 @@ int main()
         PenningTrap penningtrap5 = PenningTrap(B0, V0, d0);
         penningtrap5.add_particle(particle1);
 
-        double dt = 50./ns[k];
-
-        //std::cout << std::endl;
-        //std::cout << k;
-        //std::cout << std::endl;
-        //std::cout << ns[k];
-        //std::cout << std::endl;
-        //std::cout << dt;
-        //std::cout << std::endl;
-        
+        double dt = 50./ns[k];        
 
         for( int i= 0; i < ns[k] ; i++)
         {
@@ -151,14 +143,21 @@ int main()
         //std::cout << std::endl;
         //std::cout << rs_ana2;
         //std::cout << std::endl;
-            
-        std::string filename_eu = "rs_eu2_n_" + std::to_string(ns[k]);
-        std::string filename_rk = "rs_rk2_n_" + std::to_string(ns[k]);
-        std::string filename_ana = "rs_ana2_n_" + std::to_string(ns[k]);
+        arma::vec errors_eu = arma::vec(ns[k]);
+        arma::vec errors_rk = arma::vec(ns[k]);
 
-        rs_eu2.save(filename_eu, arma::csv_ascii);
-        rs_rk2.save(filename_rk, arma::csv_ascii);
-        rs_ana2.save(filename_ana, arma::csv_ascii);
+        for( int i= 0; i < ns[k] ; i++)
+        {
+        errors_eu(i) = arma::accu((rs_ana2.col(i) - rs_eu2.col(i)));
+        errors_rk(i) = arma::accu((rs_ana2.col(i) - rs_rk2.col(i)));
+        }
+            
+        std::string filename_eu = "eu_errors_n_" + std::to_string(ns[k]);
+        std::string filename_rk = "rk_errors_n_" + std::to_string(ns[k]);
+
+        errors_eu.save(filename_eu, arma::csv_ascii);
+        errors_rk.save(filename_rk, arma::csv_ascii);
+        //rs_ana2.save(filename_ana, arma::csv_ascii);
 
         rs_eu[k] =rs_eu2;
         rs_rk[k] =rs_rk2;
