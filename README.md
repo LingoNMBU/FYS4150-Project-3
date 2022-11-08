@@ -11,7 +11,7 @@ tests
 errors
 
 command:
-filename.cpp src/particle.cpp src/penningtrap.cpp -I include -o filename.exe -larmadillo -Wall O2
+g++ filename.cpp src/particle.cpp src/penningtrap.cpp -I include -o filename.exe -larmadillo -Wall O2
 
 FILE DECSRIPTIONS:
 tests: tests of various parts of the code, some unit tests for parts and some comparing analytical and numerical solutions
